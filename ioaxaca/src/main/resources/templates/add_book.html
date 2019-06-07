@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeLeaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand navbar-dark bg-dark">
+                <a class="navbar-brand" href="/">Buscar Libros</a>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="libros">Libros</a>
+
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="autores">Autores<span class="sr-only"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <h1 class="text-secondary">Datos</h1>
+            <form class="form-group" th:action="@{/nuevo_libro}" th:object="${info}" th:method="post" >
+                <div class="form-group">
+                    <label class="form-text">ISBN</label>
+                    <input type="text" class="form-control" th:field="*{libro.isbn}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-text">Titulo</label>
+                    <input type="text" class="form-control" th:field="*{libro.titulo}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-text">Volumen</label>
+                    <input type="number" class="form-control" th:field="*{libro.volumen}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-text">Autor</label>
+                    <select name="autor">
+                        <option th:each="autor_ : ${autores}"
+                                th:value="${autor_.id}" 
+                                th:text="${autor_.nombre+' '+autor_.apellidos}"
+                                th:selected="false"
+                                />
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-text">Estante</label>
+                    <input type="text" class="form-control" th:field="*{localizacion.estante}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-text">Sala</label>
+                    <input type="text" class="form-control" th:field="*{localizacion.sala}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-text">Librero</label>
+                    <input type="text" class="form-control" th:field="*{localizacion.librero}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-text">Posicion</label>
+                    <input type="text" class="form-control" th:field="*{localizacion.posicion}"/>
+                </div>
+                <button class="btn btn-primary" type="submit" value="Save">Save</button>
+            </form>
+        </div>
+    </body>
+</html>

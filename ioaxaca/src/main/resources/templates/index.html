@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeLeaf.org">
+    <head>
+        <title>Babel</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header>
+            <head>
+                <nav class="navbar navbar-expand navbar-dark bg-dark">
+                <a class="navbar-brand" href="/">Buscar Libros</a>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="libros">Libros</a>
+                            
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="autores">Autores<span class="sr-only"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            </head>
+        </header>
+        <p>Buscar Libros</p>
+        <form action="/search" th:action="@{/search}" th:object="${libro_selected}" method="post">
+            <select name="isbn">
+                <option th:each="libro : ${libros}"
+                        th:value="${libro.isbn}" 
+                        th:text="${libro.titulo+' '+libro.volumen}"
+                        th:selected="false"
+                        />
+            </select>
+            <p><input type="submit" value="Localizar" /></p>
+        </form>
+    </select>
+</body>
+</html>
